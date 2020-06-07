@@ -109,6 +109,7 @@ for ((i=1; i<=retries; i++)); do
         --ignore-preflight-errors=SystemVerification \
         --apiserver-advertise-address=#{MASTER_IP} \
         --pod-network-cidr=#{POD_NW_CIDR} \
+        --image-repository registry.aliyuncs.com/google_containers \
         --token "#{KUBETOKEN}" \
         --token-ttl 0 && \
             break

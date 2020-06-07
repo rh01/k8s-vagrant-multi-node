@@ -40,35 +40,35 @@ module VagrantPlugins
               vboxStorageCtl = `VBoxManage showvminfo #{$machineUUID}`
               if vboxStorageCtl.include?("#{$storagecontroller}")
                 puts('Removing storage controller')
-                unless system("VBoxManage storagectl #{$machineUUID} --name #{$storagecontroller} --remove")
+                unless system("VBoxManage storagectl #{$machineUUID} --name #{$storagecontroller}  --remove")
                   abort("Failed to remove storagecontroller to vm #{machine.name}")
                 end
                 puts('Removed storage controller')
               end
               puts('Adding storage controller')
-              unless system("VBoxManage storagectl #{$machineUUID} --name #{$storagecontroller} --add sata")
+              unless system("VBoxManage storagectl #{$machineUUID} --name #{$storagecontroller} --controller '#{$scontroller}' --add sata ")
                 abort("Failed to add storagecontroller to vm #{machine.name}")
               end
               puts('Added storage controller')
             end
 
-            (1..DISK_COUNT.to_i).each do |diskID|
-              puts("Adding disk #{diskID}")
-              diskPath = ".vagrant/#{BOX_OS}-#{machine.name}-disk-#{diskID}.vdi"
-              if !File.exist?(diskPath)
-                puts("Creating disk #{diskID} for #{machine.name}")
-                unless system("VBoxManage createhd --variant Standard --size #{DISK_SIZE_GB * 1024} --filename #{diskPath}")
-                  abort("Failed to create disk #{diskID} for vm #{machine.name}")
-                end
-                puts("Created disk #{diskID} for #{machine.name}")
-              else
-                puts("Disk #{diskID} for #{machine.name} already exists")
-              end
-              unless system("VBoxManage storageattach #{$machineUUID} --storagectl '#{$storagecontroller}' --port #{diskID - 1} --device 0 --type hdd --medium #{diskPath}")
-                abort("Failed to add disk #{diskID} for vm #{machine.name}")
-              end
-              puts("Added disk #{diskID}")
-            end
+            # (1..DISK_COUNT.to_i).each do |diskID|
+            #   puts("Adding disk #{diskID}")
+            #   diskPath = ".vagrant/#{BOX_OS}-#{machine.name}-disk-#{diskID}.vdi"
+            #   if !File.exist?(diskPath)
+            #     puts("Creating disk #{diskID} for #{machine.name}")
+            #     unless system("VBoxManage createhd --variant Standard --size #{DISK_SIZE_GB * 1024} --filename #{diskPath}")
+            #       abort("Failed to create disk #{diskID} for vm #{machine.name}")
+            #     end
+            #     puts("Created disk #{diskID} for #{machine.name}")
+            #   else
+            #     puts("Disk #{diskID} for #{machine.name} already exists")
+            #   end
+            #   unless system("VBoxManage storageattach #{$machineUUID} --storagectl '#{$storagecontroller}' --port #{diskID - 1} --device 0 --type hdd --medium #{diskPath}")
+            #     abort("Failed to add disk #{diskID} for vm #{machine.name}")
+            #   end
+            #   puts("Added disk #{diskID}")
+            # end
 
             puts("Starting vm #{machine.name}")
             options = {}

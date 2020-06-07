@@ -63,5 +63,6 @@ $kubeletExtraArgsFile = '/etc/sysconfig/kubelet'
 
 # The controller name is different per OS it seems (this is the case for at least Ubuntu right now).
 # For more information, see https://github.com/kusnier/vagrant-persistent-storage/issues/33.
-$storagecontroller = 'k8svmSATAController'
-$storagecontrollerneedstobecreated = true
+$storagecontroller = 'SATA Controller'
+$scontroller = 'SATA Controller'
+$storagecontrollerneedstobecreated = false

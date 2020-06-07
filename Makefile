@@ -11,7 +11,7 @@ KUBECTL ?= kubectl
 # Vagrant Provider
 VAGRANT_DEFAULT_PROVIDER ?= virtualbox
 # Vagrantfile set to use.
-BOX_OS ?= fedora
+BOX_OS ?= ubuntu
 # Vagrant Box image to use.
 BOX_IMAGE ?= $(shell grep "^\$$box_image.*=.*'.*'\.freeze" "$(MFILECWD)/vagrantfiles/$(BOX_OS)/common" | cut -d\' -f4)
 # Disk setup
@@ -43,7 +43,7 @@ KUBETOKEN ?=
 KUBEADM_INIT_FLAGS ?=
 # `kubeadm join` flags for nodes
 KUBEADM_JOIN_FLAGS ?=
-KUBERNETES_VERSION ?=
+KUBERNETES_VERSION ?= 1.18.0
 KUBERNETES_PKG_VERSION_SUFFIX ?=
 KUBE_NETWORK ?=
 KUBECTL_AUTO_CONF ?= true
@@ -112,7 +112,7 @@ up: preflight ## Start Kubernetes Vagrant multi-node cluster. Creates, starts an
 	@echo
 	@echo "Your k8s-vagrant-multi-node Kuberenetes cluster should be ready now."
 
-start: preflight pull
+start: preflight #pull
 ifeq ($(VAGRANT_DEFAULT_PROVIDER),virtualbox)
 	@$(MAKE) start-master start-nodes
 else
