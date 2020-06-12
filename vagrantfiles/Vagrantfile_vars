@@ -3,7 +3,7 @@
 # $box_image must be set in each Vagrantfile set.
 
 # Disk setup
-DISK_COUNT = ENV['DISK_COUNT'].to_s.strip.empty? ? 2 : ENV['DISK_COUNT'].to_i
+DISK_COUNT = ENV['DISK_COUNT'].to_s.strip.empty? ? 3 : ENV['DISK_COUNT'].to_i
 DISK_SIZE_GB = ENV['DISK_SIZE_GB'].to_s.strip.empty? ? 10 : ENV['DISK_SIZE_GB'].to_i
 
 # Resources
@@ -49,7 +49,9 @@ $kube_network = ENV['KUBE_NETWORK'].to_s.strip.empty? ? 'canal' : ENV['KUBE_NETW
 KUBE_PROXY_IPVS = ENV['KUBE_PROXY_IPVS'].to_s.strip.empty? ? false : ENV['KUBE_PROXY_IPVS'].downcase == 'true'
 
 HTTP_PROXY = ENV['HTTP_PROXY'].to_s.strip.empty? ? '' : ENV['HTTP_PROXY']
+DHTTP_PROXY = ENV['DHTTP_PROXY'].to_s.strip.empty? ? '' : ENV['DHTTP_PROXY']
 HTTPS_PROXY = ENV['HTTPS_PROXY'].to_s.strip.empty? ? '' : ENV['HTTPS_PROXY']
+DHTTPS_PROXY = ENV['DHTTPS_PROXY'].to_s.strip.empty? ? '' : ENV['DHTTPS_PROXY']
 HTTP_PROXY_USERNAME = ENV['HTTP_PROXY_USERNAME'].to_s.strip.empty? ? '' : ENV['HTTP_PROXY_USERNAME']
 HTTP_PROXY_PASSWORD = ENV['HTTP_PROXY_PASSWORD'].to_s.strip.empty? ? '' : ENV['HTTP_PROXY_PASSWORD']
 NO_PROXY = ENV['NO_PROXY'].to_s.strip.empty? ? '' : ENV['NO_PROXY']

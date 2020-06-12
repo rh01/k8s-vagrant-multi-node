@@ -50,6 +50,13 @@ set -x
 mkdir -p /etc/docker
 cat > /etc/docker/daemon.json <<EOF
 {
+  "registry-mirrors": [
+     "http://f1361db2.m.daocloud.io",
+         "https://registry.docker-cn.com",
+    "http://hub-mirror.c.163.com",
+    "https://docker.mirrors.ustc.edu.cn",
+    "https://58c5jmwe.mirror.aliyuncs.com",
+    "https://docker.mirrors.ustc.edu.cn"],
   "exec-opts": ["native.cgroupdriver=systemd"],
   "log-driver": "json-file",
   "log-opts": {
@@ -64,16 +71,16 @@ EOF
 
 mkdir -p /etc/systemd/system/docker.service.d
 set +x
-if [ -n "#{HTTP_PROXY}" ]; then
+if [ -n "#{DHTTP_PROXY}" ]; then
     cat <<EOF > /etc/systemd/system/docker.service.d/http-proxy.conf
 [Service]
-Environment="HTTP_PROXY=#{HTTP_PROXY}"
+Environment="HTTP_PROXY=#{DHTTP_PROXY}"
 EOF
 fi
-if [ -n "#{HTTPS_PROXY}" ]; then
+if [ -n "#{DHTTPS_PROXY}" ]; then
     cat <<EOF > /etc/systemd/system/docker.service.d/https-proxy.conf
 [Service]
-Environment="HTTPS_PROXY=#{HTTPS_PROXY}"
+Environment="HTTPS_PROXY=#{DHTTPS_PROXY}"
 EOF
 fi
 if [ -n "#{NO_PROXY}" ]; then
