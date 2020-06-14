@@ -29,7 +29,7 @@ $userSSHPubKey = ENV['USER_SSHPUBKEY'].to_s.strip.empty? ? '' : ENV['USER_SSHPUB
 
 # Addons
 ## Kubernetes Dashboard
-K8S_DASHBOARD = ENV['K8S_DASHBOARD'].to_s.strip.empty? ? false : ENV['K8S_DASHBOARD'].downcase == 'true'
+K8S_DASHBOARD = ENV['K8S_DASHBOARD'].to_s.strip.empty? ? true : ENV['K8S_DASHBOARD'].downcase == 'true'
 K8S_DASHBOARD_VERSION = ENV['K8S_DASHBOARD_VERSION'].to_s.strip.empty? ? 'v1.10.1' : ENV['K8S_DASHBOARD_VERSION']
 ## kube-web-view
 KUBE_WEB_VIEW = ENV['KUBE_WEB_VIEW'].to_s.strip.empty? ? false : ENV['KUBE_WEB_VIEW'].downcase == 'true'
