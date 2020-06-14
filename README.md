@@ -1,6 +1,11 @@
 # k8s-vagrant-multi-node
 
-This project was based on work from [coolsvap/kubeadm-vagrant](https://github.com/coolsvap/kubeadm-vagrant) by [@coolsvap](https://twitter.com/coolsvap), now it is mostly independent.
+- 适应国内的网络环境
+- 阿里云镜像
+- 5分钟快速启动
+
+
+This project was based on work from [galexrt/k8s-vagrant-multi-node](https://github.com/galexrt/k8s-vagrant-multi-node) by [@galexrt](https://edenmal.moe/), now it is mostly independent.
 
 A demo of the start and destroy of a cluster can be found here: [README.md Demo section](#demo).
 
